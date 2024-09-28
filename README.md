@@ -41,8 +41,8 @@ As a group we created various models and completed a variety of tests on these m
 The folder is ~1.0GB
 
 Project Source: https://www.kaggle.com/competitions/cassava-leaf-disease-classification </br>
-Python Files: https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/code/cassava-plant-disease-detection-classification </br>
-LaTeX Thesis: https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/Document/cassava-plant-disease-detection-classification
+Python Files: https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/code </br>
+LaTeX Thesis: https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/Document
 
 This is a private repository and is shared for educational purposes. Please feel free to [download](https://github.com/lrgto/cassava-plant-disease-detection-classification/archive/refs/heads/main.zip) this repo for your own educational needs. For further infomation please direct yourself to the files listed; <br> [License](https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/LICENSE.txt), [Code of Conduct](https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/docs/CODE_OF_CONDUCT.md),  [Contributing](https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/docs/CONTRIBUTING.md), [Changelog](https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/docs/CHANGELOG.md), [Security](https://github.com/lrgto/cassava-plant-disease-detection-classification/blob/main/docs/SECURITY.md).
 
