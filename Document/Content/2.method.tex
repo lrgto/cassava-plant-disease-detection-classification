@@ -1,0 +1,43 @@
+\section{Methodology}
+\label{Methodology Section}
+
+In the Cassava\_autoencoder\_pretraining project \cite{Kaggle} The merged\_train.csv file is the data set index file which is stored in the current working directory (CWD). It holds 27053 rows of sample image filename ('image\_id') and an integer representing the sample category ('labels'). The train\_images folder holds the 27053 images in jpeg format. The data set used was attached to this project was Cassava plant disease classification, it was downloaded as an archive of images with a file that acted as a dictionary for the classification based on the file names. The first thing we had to do was have a pre-processing stage to get the images into a usable format that we could begin the machine learning on. The first thing to do was extraction which is easy enough in python using the ‘zipfile’ library. Once the images are extracted we then move the images to locations based on what they represent, in the beginning we tried having it so that we split the label array based on the images then split it all based on training and testing however this became too much complexity for what it was worth. This was then changed to move the images to a train and testing directory based on a 50/50 split of each of the classes, each of the images were put into a sub-directory in the training/testing parent based on the class they represent, so the format was as follows: \\
+
+Cassava/train/CBB \\
+ 	          /CBSD… etc \\
+	/test/CBB… etc \\
+	
+This format allowed the data to be easily read into keras using the pre-processing function ‘image\_dataset\_from\_directory’ which could infer the labels based on the folder name that the image was in. This also allowed us to easily split the data into a validation set for the training which became useful further on when creating models. This function also allowed for changing the image size, this was reduced as the original images were very large and computationally expensive. 
+
+\subsection{Cognitive Neural Network}
+
+All python settings for the model structure and execution are in model\_settings.py. All python functions for manipulating the model are in cnn\_func.py.
+
+1.	Convolution of image data \\
+
+The inputs are applied to a Conv2d layer then a pooling layer. There can be up to three of these combinations.
+If any of FILTERS\_1, FILTERS\_2, FILTERS\_3 are greater than 0, the corresponding Conv2d layer will be created. Conv2d settings: number of filters, activation function, kernel size and stride, pooling settings: pool size and stride. \\
+	
+2.	Neural Network Deep Learning \\
+
+The convolution outputs is then applied to the neural network hidden layers. The hidden layers consist of up to three combinations of a dropout layer then a dense layer. The DENSE\_KERNEL\_INITIALIZER is the kernel\_initializer parameter for the Dense layers. If any of DROPOUT\_RATE\_1, DROPOUT\_RATE\_2, DROPOUT\_RATE\_3 are greater than 0, the corresponding Conv2d layer will be created. \\
+
+Dropout settings: the dropout rate\\
+If any of DENSE\_OUT\_1, DENSE\_OUT\_2, DENSE\_OUT\_3 are greater than 0, the corresponding Conv2d layer will be created. \\
+
+Dense settings: number of units (outputs) and activation function. The hidden layers can be added at any stage of training. So, convolution can be jump-started before applying deep learning. Additional hidden layers could also be added at any time. If INITIAL\_DENSE\_LAYERS is False then the hidden dropout and dense layers are not initially created. \\
+
+3.	Output probabilities for five categories. \\
+
+The final layer is a dense layer that produces one output for each category. The output layer settings are the number of classes (OUT) and the activation function (OUT\_ACTIV- \\ ATION). \\
+
+Model Compilation: \\
+The OPTIMIZER\_NAME is the name of the compilation optimizer parameter. \\
+The MODEL\_OPTIMIZER is the instance for the compilation optimizer parameter. \\
+MODEL\_LOSS is the compilation loss parameter. \\
+MODEL\_METRICS is the compilation metrics parameter. \\
+
+Model Storage: \\
+All models are saved to the MODEL\_DATA\_DIR using the MODEL\_DATA\_FILENAME. \\
+The MODEL\_DATA\_FILENAME is '{OPTIMIZER\_NAME.lower()}\_{PREPARED\_IMAG- \\ ES\_FOLDER}'. The data set index files use a prefix setting. MODEL\_TRAIN\_PREFIX is 'train\_ind' and MODEL\_TEST\_PREFIX is 'test\_ind'. \\
+

@@ -1,0 +1,40 @@
+python\                CWD
+    dataset_images\    MID_IMAGES_FOLDER  Varied original image sizes.
+        CBB\               1553 JPEG image samples of the CBB category.
+        CBSD\              1553 JPEG image samples of the CBSD category.
+        CGM\               1553 JPEG image samples of the CGM category.
+        CMD\               1553 JPEG image samples of the CMD category.
+        Healthy\           1553 JPEG image samples of the Healthy category.
+    tdataset_images\   Varied original image sizes.
+        test\              Image samples for evaluating model.
+            CBB\               233 JPEG image samples of the CBB category.
+            CBSD\              233 JPEG image samples of the CBSD category.
+            CGM\               233 JPEG image samples of the CGM category.
+            CMD\               233 JPEG image samples of the CMD category.
+            Healthy\           233 JPEG image samples of the Healthy category.
+        train\             Image samples for fitting model.
+            CBB\               1320 JPEG image samples of the CBB category.
+            CBSD\              1320 JPEG image samples of the CBSD category.
+            CGM\               1320 JPEG image samples of the CGM category.
+            CMD\               1320 JPEG image samples of the CMD category.
+            Healthy\           1320 JPEG image samples of the Healthy category.
+    280x210\           Uniform image width of 280 and height of 210.
+        CBB\               1553 JPEG image samples of the CBB category.
+        CBSD\              1553 JPEG image samples of the CBSD category.
+        CGM\               1553 JPEG image samples of the CGM category.
+        CMD\               1553 JPEG image samples of the CMD category.
+        Healthy\           1553 JPEG image samples of the Healthy category.
+    cnn_model\
+        adadelta_280x210_0.1_x5_r0\
+        adadelta_280x210_test_ind_0.1_x5_r0    .csv
+        adadelta_280x210_train_ind_0.1_x5_r0   .csv
+
+    dataset.csv        PREPARED_INDEX_FILE
+
+    data_settings.py
+    model_settings.py
+    util_func.py
+    data_func.py
+    cnn_func.py
+    cnn.py
+

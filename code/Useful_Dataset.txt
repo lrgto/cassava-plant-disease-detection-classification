@@ -1,0 +1,84 @@
+Dataset: Cassava plant disease Merged 2019-2020
+Consolidated data of Cassava plant disease from 2019 and 2020 disease classification competition.
+	2020: https://www.kaggle.com/c/cassava-leaf-disease-classification
+	2019: https://www.kaggle.com/c/cassava-disease
+Source: https://www.kaggle.com/srg9000/cassava-plant-disease-merged-20192020
+Download: 10.7 GB zipped dataset.
+
+
+
+Discarded extra_images and extra_images_tfrecords: These images do not have a class. Obviously, part of the competition.
+Also discarded train_images_tfrecords as the data is a copy of train_images.
+
+So, only 3.14GB (unzipped) is useable:
+	merged_train.csv		27054 rows (1 header, 27053 rows) {'image_id': 'filename.jpg', 'labels': [0:4]
+	train_images\train_images	27053 image JPG files
+There are 5 classes:
+	0: 'Cassava Bacterial Blight (CBB)',
+	1: 'Cassava Brown Streak Disease (CBSD)',
+	2: 'Cassava Green Mottle (CGM)',
+	3: 'Cassava Mosaic Disease (CMD)',
+	4: 'Healthy'
+
+However, number of images for each class is unbalanced:
+	Class 0 has 1553 images.
+	Class 1 has 3632 images.
+	Class 2 has 3159 images.
+	Class 3 has 15816 images.
+	Class 4 has 2893 images.
+
+I wrote a method to compile a uniform size for each class:
+
+import pandas as pd
+import os
+import sys
+import shutil
+
+# Use source index csv file to copy a uniform number of images for each class
+# into the destination folder, indexed by the dest_index_file.
+# Set max_images to limit the number of images per class
+def equalize_class_sample_size(src_index_file, dst_index_file, src_images_folder, dst_images_folder, max_images=0):
+  dir = os.getcwd() + '\\'
+  src_dir = dir + src_images_folder + '\\'
+  dst_dir = dir + dst_images_folder
+  if not os.path.isdir(dst_dir):
+    os.mkdir(dst_dir)
+
+  # src_df = pd.read_csv('merged_train.csv')
+  src_df = pd.read_csv(dir + src_index_file)
+
+  # Group the source DataFrame into individual classes
+  gdf = src_df.groupby(df.columns[1]) # Group Dataframe by class labels (last column in src_df)
+
+  # Find the smallest sample size of each class
+  min = sys.maxsize
+  for label, files in gdf:
+    rows = files.shape[0]
+    if (rows < min):
+      min = rows
+  if (max_images > 0 and min > max_images):
+    min = max_images
+
+  dest_df = pd.DataFrame(columns=src_df.columns)
+  for label, files in gdf:
+    # Get min random rows for this class label
+    samples = files.sample(n=min, random_state=0)
+
+    print("Class", label, "has", samples.shape[0], "images")
+
+    # Add samples to dest_df DataFrame
+    dest_df = dest_df.append(samples)
+
+    for i in range(min):
+      filename = samples.iloc[i, 0]
+      # Copy samples files from image_src_folder to image_dest_folder
+      shutil.copy(src_dir + filename, dst_dir)
+
+  #print(dest_df.to_string())
+  dest_df.to_csv(dir + dst_index_file, index = False)
+  return min
+
+class_size = equalize_class_sample_size('merged_train.csv', 'utrain.csv', 'train_images', 'utrain_images')
+print(class_size, "images for each class")
+
+The result is utrain.csv referencing 1553 images per class = 7765 files in utrain_images folder (862 MB).

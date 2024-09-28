@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {2}Methodology}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Cognitive Neural Network}{2}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Results \& Findings}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}CNN Model}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Layers \& Filters}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Accuracy against Epochs}{10}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Discussion}{14}{section.4}%
+\contentsline {section}{\numberline {5}Conclusion}{14}{section.5}%
+\contentsline {section}{\numberline {6}Appendix}{15}{section.6}%
+\contentsline {subsection}{\numberline {6.1}A: Accuracy v Epoch Graphs}{15}{subsection.6.1}%
